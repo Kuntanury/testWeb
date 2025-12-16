@@ -1,0 +1,47 @@
+<!-- 创建一个测试页面 test.yourapp.com -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Universal Link 测试</title>
+</head>
+<body>
+    <h1>测试链接</h1>
+    
+    <!-- 方法 1: 直接链接 -->
+    <a href="https://transgull.com/zh-CN/share/eRG9k3Xz5p">测试 Universal Link</a>
+    
+    <!-- 方法 2: JavaScript 重定向 -->
+    <button onclick="testUniversalLink()">测试按钮</button>
+    
+    <!-- 方法 3: 二维码 -->
+    <div id="qrcode"></div>
+    
+    <script>
+    function testUniversalLink() {
+        // 尝试打开
+        window.location.href = "https://transgull.com/share/eRG9k3Xz5p";
+        
+        // 回退方案
+        setTimeout(function() {
+            if (document.hidden) {
+                console.log("应用已打开");
+            } else {
+                // 尝试 URL Scheme
+                window.location.href = "yourapp://product/123";
+                
+                // 最终回退
+                setTimeout(function() {
+                    window.location.href = "https://apps.apple.com/app/id123456789";
+                }, 1000);
+            }
+        }, 500);
+    }
+    
+    // 生成二维码
+    function generateQRCode() {
+        const url = "https://yourapp.com/deeplink/test123";
+        // 使用 QRCode 库生成二维码
+    }
+    </script>
+</body>
+</html>
